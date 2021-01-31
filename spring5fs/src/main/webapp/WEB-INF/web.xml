@@ -22,9 +22,9 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				chap11.config.MemberConfig
-				chap11.config.MvcConfig
-				chap11.config.ControllerConfig
+				springMVC.config.MemberConfig
+				springMVC.config.MvcConfig
+				springMVC.config.ControllerConfig
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
