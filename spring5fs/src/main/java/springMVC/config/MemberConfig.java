@@ -1,8 +1,8 @@
-package chap11.config;
+package springMVC.config;
 
-import chap11.member.ChangePasswordService;
-import chap11.member.MemberRegisterService;
-import chap11.member.MemberDao;
+import springMVC.member.ChangePasswordService;
+import springMVC.member.MemberRegisterService;
+import springMVC.member.MemberDao;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 

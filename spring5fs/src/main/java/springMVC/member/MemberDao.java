@@ -1,4 +1,4 @@
-package chap11.member;
+package springMVC.member;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;

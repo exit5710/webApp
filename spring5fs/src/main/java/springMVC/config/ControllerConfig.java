@@ -1,8 +1,8 @@
-package chap11.config;
+package springMVC.config;
 
-import chap11.controller.RegisterController;
+import springMVC.controller.RegisterController;
 
-import chap11.member.MemberRegisterService;
+import springMVC.member.MemberRegisterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages={"chap11"})
+@ComponentScan(basePackages={"springMVC"})
 public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;

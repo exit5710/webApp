@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: kiYoung-
-  Date: 2021-01-30
-  Time: 오후 1:43
+  Date: 2021-01-31
+  Time: 오후 1:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,13 +10,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>회원가입완료</title>
+	<title>springMVC main</title>
 </head>
+
 <body>
 	<p>
-		<strong>${registerRequest.name}님</strong>
-		회원 가입을 완료했습니다.
+		환영합니다.
 	</p>
-	<p><a href="<c:url value='/main'/> ">[첫 화면 이동]</a></p>
+	<p>
+		<a href="<c:url value="/register/step1" /> ">[회원 가입하기]</a>
+	</p>
 </body>
 </html>

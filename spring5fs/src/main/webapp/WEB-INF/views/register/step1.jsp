@@ -17,7 +17,7 @@
 			if (!agree) {
 				window.alert('약관에 동의해주세요.');
 				return false;
-			};
+			}
 
 			let nextStep = document.getElementById('nextStep');
 			nextStep.submit();

@@ -1,4 +1,4 @@
-package chap11.member;
+package springMVC.member;
 
 public class RegisterRequest {
 	private String email;
