@@ -12,6 +12,7 @@
 <head>
 	<title>회원가입완료</title>
 </head>
+
 <body>
 	<p>
 		<strong>${registerRequest.name}님</strong>

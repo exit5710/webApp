@@ -56,6 +56,7 @@
 		};
 	</script>
 </head>
+
 <body>
 	<h2>회원정보 입력</h2>
 	<form:form id="nextStep" method="post" modelAttribute="registerRequest">
