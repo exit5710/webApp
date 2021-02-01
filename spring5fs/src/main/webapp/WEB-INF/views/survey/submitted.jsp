@@ -11,6 +11,11 @@
 <html>
 <head>
 	<title>응답내용</title>
+	<script defer type="text/javascript">
+		'use strict';
+		window.onload = function () {
+		};
+	</script>
 </head>
 
 <body>

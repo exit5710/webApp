@@ -52,6 +52,12 @@
 
 			let nextStep = document.getElementById('nextStep');
 			nextStep.action = './step3';
+
+			// let createInput = document.createElement('input');
+			// createInput.name = "hobby";
+			// createInput.value = 'computer';
+			// nextStep.appendChild(createInput);
+
 			nextStep.submit();
 		};
 	</script>
