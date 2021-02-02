@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>회원가입</title>
+	<title><spring:message code="member.register" /></title>
 	<script defer type="text/javascript">
 		'use strict';
 		let check = function() {
@@ -26,13 +27,14 @@
 </head>
 
 <body>
-	<h2>약관</h2>
+	<h2><spring:message code="term" /></h2>
 	<p>약관 내용</p>
 	<form id="nextStep" action="step2" method="post">
 		<label>
-			<input id="agree" type="checkbox" name="agree" value="true" />약관동의
+			<input id="agree" type="checkbox" name="agree" value="true" />
+			<spring:message code="term.agree" />
 		</label>
-		<input id="step2" type="button" value="다음단계" onclick="check();"/>
+		<input id="step2" type="button" value="<spring:message code="next.btn" />" onclick="check();"/>
 	</form>
 </body>
 </html>

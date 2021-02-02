@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>회원가입</title>
+	<title><spring:message code="member.register" /></title>
 	<script defer type="text/javascript">
 		'use strict';
 		window.onload = function () {
@@ -64,25 +65,25 @@
 </head>
 
 <body>
-	<h2>회원정보 입력</h2>
+	<h2><spring:message code="member.info" /></h2>
 	<form:form id="nextStep" method="post" modelAttribute="registerRequest">
 		<p>
-			<label for="email">이메일</label><br/>
+			<label for="email"><spring:message code="email" /></label><br/>
 			<form:input path="email" />
 		</p>
 		<p>
-			<label for="name">이름</label><br/>
+			<label for="name"><spring:message code="name" /></label><br/>
 			<form:input path="name" />
 		</p>
 		<p>
-			<label for="password">비밀번호</label><br/>
+			<label for="password"><spring:message code="password" /></label><br/>
 			<form:password path="password" />
 		</p>
 		<p>
-			<label for="confirmPassword">비밀번호 확인</label><br/>
+			<label for="confirmPassword"><spring:message code="password.confirm" /></label><br/>
 			<form:password path="confirmPassword" />
 		</p>
-		<input id="step3" type="button" value="가입완료" onclick="registerForm();" />
+		<input id="step3" type="button" value="<spring:message code="register.btn" />" onclick="registerForm();" />
 	</form:form>
 </body>
 </html>
