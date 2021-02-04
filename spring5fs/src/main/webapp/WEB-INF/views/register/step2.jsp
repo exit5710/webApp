@@ -85,7 +85,7 @@
 		<p>
 			<label for="confirmPassword"><spring:message code="password.confirm" /></label><br/>
 			<form:password path="confirmPassword" />
-			<form:errors path="c" />
+			<form:errors path="confirmPassword" />
 		</p>
 		<input id="step3" type="button" value="<spring:message code="register.btn" />" onclick="registerForm();" />
 	</form:form>
