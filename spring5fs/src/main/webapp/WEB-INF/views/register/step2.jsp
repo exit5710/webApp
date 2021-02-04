@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="registerRequest" scope="request" type="springMVC.member.RegisterRequest"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 		'use strict';
 		window.onload = function () {
 			let springAttribute = '${registerRequest.email}';
-			if (springAttribute != '') {
+			if (springAttribute !== '') {
 				window.alert('입력한 이메일은 이미 등록되어있습니다.');
 			}
 		};
@@ -66,6 +67,7 @@
 
 <body>
 	<h2><spring:message code="member.info" /></h2>
+	<%--@elvariable id="registerRequest" type="java"--%>
 	<form:form id="nextStep" method="post" modelAttribute="registerRequest">
 		<p>
 			<label for="email"><spring:message code="email" /></label><br/>
