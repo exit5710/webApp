@@ -1,5 +1,6 @@
 package springMVC.controller;
 
+import org.springframework.validation.Errors;
 import springMVC.member.MemberRegisterService;
 import springMVC.member.RegisterRequest;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import springMVC.validate.RegisterRequestValidator;
 
 @Controller
 public class RegisterController {
@@ -33,14 +35,21 @@ public class RegisterController {
 	}
 
 	@RequestMapping("/register/step3")
-	public String handleStep3(RegisterRequest registerRequest) {
+	public String handleStep3(RegisterRequest registerRequest, Errors errors) {
 		try {
 			if (registerRequest.getEmail() == null || registerRequest.getName() == null || registerRequest.getPassword() == null) {
 				return "register/step1";
 			}
+
+			new RegisterRequestValidator().validate(registerRequest, errors);
+			if (errors.hasErrors()) {
+				return "register/step2";
+			}
+
 			memberRegisterService.regist(registerRequest);
 			return "register/step3";
 		} catch (DuplicateMemberException e) {
+			errors.rejectValue("email", "duplicate");
 			return "register/step2";
 		}
 	}

@@ -40,7 +40,7 @@ public class RegisterRequestValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "required");
 		if (!registerRequest.getPassword().isEmpty()) {
 			if (!registerRequest.isPasswordEqualToConfirmPassword()) {
-				errors.rejectValue("confirmPassword", "nomatch");
+				errors.rejectValue("confirmPassword", "noMatch");
 			}
 		}
 	}

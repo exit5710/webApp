@@ -70,18 +70,22 @@
 		<p>
 			<label for="email"><spring:message code="email" /></label><br/>
 			<form:input path="email" />
+			<form:errors path="email" />
 		</p>
 		<p>
 			<label for="name"><spring:message code="name" /></label><br/>
 			<form:input path="name" />
+			<form:errors path="name" />
 		</p>
 		<p>
 			<label for="password"><spring:message code="password" /></label><br/>
 			<form:password path="password" />
+			<form:errors path="password" />
 		</p>
 		<p>
 			<label for="confirmPassword"><spring:message code="password.confirm" /></label><br/>
 			<form:password path="confirmPassword" />
+			<form:errors path="c" />
 		</p>
 		<input id="step3" type="button" value="<spring:message code="register.btn" />" onclick="registerForm();" />
 	</form:form>
