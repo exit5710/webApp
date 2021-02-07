@@ -1,5 +1,7 @@
 package springMVC.config;
 
+import springMVC.auth.AuthService;
+import springMVC.controller.LoginController;
 import springMVC.controller.RegisterController;
 
 import springMVC.controller.SurveyController;
@@ -16,6 +18,9 @@ public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 
+	@Autowired
+	private AuthService authService;
+
 	@Bean
 	public RegisterController registerController() {
 		RegisterController registerController = new RegisterController();
@@ -27,5 +32,13 @@ public class ControllerConfig {
 	@Bean
 	public SurveyController surveyController() {
 		return new SurveyController();
+	}
+
+	@Bean
+	public LoginController loginController() {
+		LoginController loginController = new LoginController();
+		loginController.setAuthService(authService);
+
+		return loginController;
 	}
 }

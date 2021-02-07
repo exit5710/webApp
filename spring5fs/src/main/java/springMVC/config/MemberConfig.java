@@ -1,5 +1,6 @@
 package springMVC.config;
 
+import springMVC.auth.AuthService;
 import springMVC.member.ChangePasswordService;
 import springMVC.member.MemberRegisterService;
 import springMVC.member.MemberDao;
@@ -50,5 +51,13 @@ public class MemberConfig {
 		changePasswordService.setMemberDao(memberDao());
 
 		return changePasswordService;
+	}
+
+	@Bean
+	public AuthService authService() {
+		AuthService authService = new AuthService();
+		authService.setMemberDao(memberDao());
+
+		return authService;
 	}
 }
