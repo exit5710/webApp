@@ -13,6 +13,8 @@ import springMVC.auth.AuthService;
 import springMVC.auth.LoginCommandValidator;
 import springMVC.login.LoginCommand;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -28,7 +30,7 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public String submit(LoginCommand loginCommand, Errors errors) {
+	public String submit(LoginCommand loginCommand, Errors errors, HttpSession heHttpSession) {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		if (errors.hasErrors()) {
 			return "login/loginForm";
@@ -36,6 +38,7 @@ public class LoginController {
 
 		try {
 			AuthInfo authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
+			heHttpSession.setAttribute("authInfo", authInfo);
 			return "login/loginSuccess";
 		} catch (WrongIdPasswordException e) {
 			errors.reject("idPasswordNotMatching");

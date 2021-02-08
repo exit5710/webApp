@@ -2,6 +2,7 @@ package springMVC.config;
 
 import springMVC.auth.AuthService;
 import springMVC.controller.LoginController;
+import springMVC.controller.LogoutController;
 import springMVC.controller.RegisterController;
 
 import springMVC.controller.SurveyController;
@@ -40,5 +41,10 @@ public class ControllerConfig {
 		loginController.setAuthService(authService);
 
 		return loginController;
+	}
+
+	@Bean
+	public LogoutController logoutController() {
+		return new LogoutController();
 	}
 }

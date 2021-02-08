@@ -18,11 +18,25 @@
 	</style>
 	<script defer type="text/javascript">
 		'use strict';
+		window.onload = function () {
+			if ('${authInfo.name}') {
+				document.getElementById('login').value = 'logout';
+				document.getElementById('login').id = 'logout';
+			}
+		};
+
 		let actionPage = function (_target) {
 			let page = '';
 			let listForm = document.getElementById('listForm');
 
 			switch (_target.id) {
+				case 'login' :
+					page += 'login';
+					listForm.method = 'get';
+					break;
+				case 'logout' :
+					page += 'logout';
+					break;
 				case 'main' :
 					page += 'main';
 					listForm.method = 'get';
@@ -45,6 +59,7 @@
 <body>
 	<form id="listForm" method="post">
 		<div>
+			<input type="button" id="login" class="box" value="login" onclick="actionPage(this);" /><br/>
 			<input type="button" id="main" class="box" value="main" onclick="actionPage(this);" /><br/>
 			<input type="button" id="register" class="box" value="register" onclick="actionPage(this);" /><br/>
 			<input type="button" id="survey" class="box" value="survey" onclick="actionPage(this);" /><br/>
