@@ -1,11 +1,9 @@
 package springMVC.config;
 
 import springMVC.auth.AuthService;
-import springMVC.controller.LoginController;
-import springMVC.controller.LogoutController;
-import springMVC.controller.RegisterController;
+import springMVC.controller.*;
 
-import springMVC.controller.SurveyController;
+import springMVC.member.ChangePasswordService;
 import springMVC.member.MemberRegisterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,9 @@ public class ControllerConfig {
 
 	@Autowired
 	private AuthService authService;
+
+	@Autowired
+	private ChangePasswordService changePasswordService;
 
 	@Bean
 	public RegisterController registerController() {
@@ -46,5 +47,13 @@ public class ControllerConfig {
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();
+	}
+
+	@Bean
+	public ChangePasswordController changePasswordController() {
+		ChangePasswordController changePasswordController = new ChangePasswordController();
+		changePasswordController.setChangePasswordService(changePasswordService);
+
+		return changePasswordController;
 	}
 }
