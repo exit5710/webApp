@@ -1,4 +1,4 @@
-package springMVC.login;
+package springMVC.command;
 
 public class LoginCommand {
 	private String email;

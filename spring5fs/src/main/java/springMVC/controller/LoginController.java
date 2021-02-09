@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import springMVC.auth.AuthInfo;
 import springMVC.auth.AuthService;
 import springMVC.auth.LoginCommandValidator;
-import springMVC.login.LoginCommand;
+import springMVC.command.LoginCommand;
 
 import javax.servlet.http.HttpSession;
 

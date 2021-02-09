@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import springMVC.login.LoginCommand;
+import springMVC.command.LoginCommand;
 
 public class LoginCommandValidator implements Validator {
 	@Override
