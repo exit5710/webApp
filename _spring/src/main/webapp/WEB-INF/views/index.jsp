@@ -10,6 +10,11 @@
 <html>
 	<head>
 		<title>${title}</title>
+		<script type="text/javascript">
+			window.onload = function () {
+				console.log('spring index');
+			};
+		</script>
 	</head>
 		<div>
 			${message}
