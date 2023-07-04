@@ -11,6 +11,7 @@ import java.lang.invoke.MethodHandles;
 
 @Controller
 public class MainController {
+	// private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@RequestMapping(value = "/")
