@@ -10,17 +10,19 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>racers</title>
-	<link rel="icon" href="./icon/html5.ico" />
-	<link type="text/css" rel="stylesheet" href="./css/racerStyles.css" />
+	<link rel="icon" href="./icon/html5.ico"/>
+	<link type="text/css" rel="stylesheet" href="./css/racerStyles.css"/>
 	<script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
 	<script type="text/javascript" src="./js/common.js"></script>
+	<script type="text/javascript" src="./js/generalTab.js"></script>
 	<script type="text/javascript" src="./js/racerScripts.js"></script>
 	<script type="text/javascript">
 		function submitContents() {
 			let addRunner = document.getElementById("addRunner");
+
 			return false;
 			/*
 			addRunner.action = "./racerSave.do";
@@ -57,19 +59,19 @@
 		<div id="new">
 			<h4>All Finishers</h4>
 			<form id="addRunner" name="addRunner" method="POST">
-				First Name: <input type="text" name="firstName" id="firstName" /><br />
-				Last Name: <input type="text" name="lastName" id="lastName" /><br />
+				First Name: <input type="text" name="firstName" id="firstName"/><br/>
+				Last Name: <input type="text" name="lastName" id="lastName"/><br/>
 				Gender: <select id="gender" name="gender">
 				<option value="">--Please Select--</option>
 				<option value="f">Female</option>
 				<option value="m">Male</option>
 			</select><br>
 				Finish Time:
-				<input type="text" id="minutes" name="minutes" size="10" maxlength="2" />(Minutes)
-				<input type="text" id="seconds" name="seconds" size="10" maxlength="2" />(Seconds)<br /><br />
-				<input type="hidden" id="action" name="action" value="addRunner" />
+				<input type="text" id="minutes" name="minutes" size="10" maxlength="2"/>(Minutes)
+				<input type="text" id="seconds" name="seconds" size="10" maxlength="2"/>(Seconds)<br/><br/>
+				<input type="hidden" id="action" name="action" value="addRunner"/>
 				<!-- <button type="submit" name="btnSave" id="btnSave" onclick="submitContents(); return false;">Add Runner</button> -->
-				<!--  <button type="submit" name="btnSave" id="btnSave">Add Runner</button> -->
+				<!-- <button type="submit" name="btnSave" id="btnSave">Add Runner</button> -->
 				<button type="submit" name="btnSave" onclick="fn_btnSave(); return false;">Add Runner</button>
 			</form>
 		</div>
@@ -79,9 +81,9 @@
 	<h4>Congratulations to all our finishers!</h4>
 	<button id="btnStart">Start Page Updates</button>
 	<button id="btnStop">Stop Page Updates</button>
-	<br />
+	<br/>
 	<span id="freq"></span>
-	<br /><br />
+	<br/><br/>
 	Last Updated : <span id="updatedTime"></span>
 </footer>
 </body>
