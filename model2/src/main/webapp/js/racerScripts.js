@@ -11,7 +11,7 @@ const fn_tabClickCallBack = function (tabSide) {
 const fn_startAJAXcalls = function () {
 	if (repeat) {
 		setTimeout(function () {
-			fn_getXMLRacers();
+			fn_racerList();
 			fn_startAJAXcalls();
 		}, 10000);
 	}
@@ -33,16 +33,18 @@ const fn_getTimeAjax = function () {
 
 const fn_btnStart = function () {
 	repeat = true;
+
 	fn_startAJAXcalls();
 	fn_showFrequency();
 };
 
 const fn_btnStop = function () {
 	repeat = false;
+
 	$("#freq").html("Updates paused.");
 };
 
-const fn_getXMLRacers = function () {
+const fn_racerList = function () {
 	$.ajax({
 		type: "POST",
 		url: "./racerList.do",
@@ -59,11 +61,13 @@ const fn_getXMLRacers = function () {
 
 			$.each(response, function () {
 				let info = "<li>Name: " + this["firstName"] + " " + this["lastName"] + ". Time: " + this["minutes"] + ":" + this["seconds"] + "</li>";
+
 				if (this["gender"] === "m") {
 					$("#finishers_m").append(info);
 				} else if (this["gender"] === "f") {
 					$("#finishers_f").append(info);
 				}
+
 				$("#finishers_all").append(info);
 
 				fn_lastUpdate();
@@ -93,6 +97,7 @@ const fn_getXMLRacers = function () {
 			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 		},
 		complete: function (data, textStatus) {
+			console.log("complete fn_racerList");
 		}
 	});
 };
@@ -110,44 +115,42 @@ const fn_btnSave = function () {
 		async: true,
 		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
 		beforeSend: function (xhr, opts) {
-			let bool = true;
-
 			if (data["firstName"] === "") {
 				$("#firstName").focus();
-				alert("FirstName을 입력하세요.");
-				bool = false;
+				alert("firstName을 입력하세요.");
+
 				return false;
 			}
 
 			if (data["lastName"] === "") {
 				$("#lastName").focus();
 				alert("lastName을 입력하세요.");
-				bool = false;
+
 				return false;
 			}
 
 			if (data["gender"] === "") {
 				$("#gender").focus();
 				alert("gender를 선택하세요.");
-				bool = false;
+
 				return false;
 			}
 
 			if (data["minutes"] === "") {
 				$("#minutes").focus();
 				alert("minutes를 입력하세요.");
-				bool = false;
+
 				return false;
 			}
 
 			if (data["seconds"] === "") {
 				$("#seconds").focus();
 				alert("seconds를 입력하세요.");
-				bool = false;
+
 				return false;
 			}
 
-			return bool; // false 전송 취소
+			return true;
 		},
 		success: function (response) {
 			$('#addRunner')[0].reset();
@@ -157,6 +160,7 @@ const fn_btnSave = function () {
 			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 		},
 		complete: function (data, textStatus) {
+			console.log("complete fn_btnSave");
 		}
 	});
 
@@ -180,7 +184,7 @@ $(document).ready(function () {
 	// $("#btnSave").click(fn_btnSave);
 
 	fn_tabSetting();
-	fn_getXMLRacers();
+	fn_racerList();
 	fn_showFrequency();
 	fn_startAJAXcalls();
 });
