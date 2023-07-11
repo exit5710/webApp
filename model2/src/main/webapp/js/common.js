@@ -1,6 +1,6 @@
 "use strict";
-
 // common
+
 const getRandom = function (number) {
 	return Math.floor(Math.random() * number);
 };
@@ -37,6 +37,51 @@ const zeroAdd = function (number) {
 	number = (number < 10) ? "0" + number : number;
 
 	return number;
+};
+
+const fn_searchSubmit = function (url, data, callBack) {
+	$.ajax({
+		type: "POST",
+		url: url,
+		data: data,
+		dataType: "json",
+		cache: false,
+		async: true,
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
+		beforeSend: function (xhr, opts) {
+			return true; // false 전송 취소
+		},
+		success: function (response) {
+			return callBack(response)
+		},
+		error: function (request, status, error) {
+			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		},
+		complete: function (data, textStatus) {
+			console.log("fn_searchSubmit complete : " + data.statusText + "/" + textStatus);
+		}
+	});
+};
+
+const fn_saveSubmit = function (url, data, async, callBack) {
+	$.ajax({ // https://cofs.tistory.com/402
+		type: "POST",
+		url: url,
+		data: data, // {data : JSON.stringify(data)}
+		dataType: "text", //"json" - data의 값이 이미 json이기 때문에 json 변경없이 text로 하는듯...
+		cache: false,
+		async: async,
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
+		success: function (response) {
+			return callBack(response);
+		},
+		error: function (request, status, error) {
+			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		},
+		complete: function (data, textStatus) {
+			console.log("fn_saveSubmit complete : " + data.statusText + "/" + textStatus);
+		}
+	});
 };
 
 $.fn.serializeObject = function () {
