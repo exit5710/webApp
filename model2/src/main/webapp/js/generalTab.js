@@ -1,4 +1,5 @@
 "use strict";
+// generalTab
 
 const fn_tabSetting = function () {
 	$('.tabcontent > div').hide();
