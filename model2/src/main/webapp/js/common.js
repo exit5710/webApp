@@ -1,74 +1,52 @@
 "use strict";
 // common
 
-const getRandom = function (number) {
+const fn_getRandom = function (number) {
+	// 0 ~ number - 1
 	return Math.floor(Math.random() * number);
 };
 
-const getDate = function () {
+const fn_getDate = function () {
 	const date = new Date();
+
 	let year = date.getFullYear();
-	let month = zeroAdd(date.getMonth() + 1);
-	let day = zeroAdd(date.getDate());
+	let month = fn_zeroAdd(date.getMonth() + 1);
+	let day = fn_zeroAdd(date.getDate());
 
 	return year + "-" + month + "-" + day;
 };
 
-const getTime = function (type) {
+const fn_getTime = function (type) {
 	const date = new Date();
 
 	//A.M. Ante meridiem, P.M. Post meridiem
 	let meridiem = "";
 	let hours = date.getHours(); // 새벽 12시는 0
-	let minutes = zeroAdd(date.getMinutes());
-	let seconds = zeroAdd(date.getSeconds());
+	let minutes = fn_zeroAdd(date.getMinutes());
+	let seconds = fn_zeroAdd(date.getSeconds());
 
 	if (type === 12) {
 		(hours < 11) ? meridiem = "AM " : meridiem = "PM ";
-		hours = (hours - 12 <= 0) ? zeroAdd(hours) : zeroAdd(hours - 12);
+		hours = (hours - 12 <= 0) ? fn_zeroAdd(hours) : fn_zeroAdd(hours - 12);
 	} else {
-		hours = zeroAdd(hours);
+		hours = fn_zeroAdd(hours);
 	}
 
 	return meridiem + hours + ":" + minutes + ":" + seconds;
 };
 
-const zeroAdd = function (number) {
+const fn_zeroAdd = function (number) {
 	number = (number < 10) ? "0" + number : number;
 
 	return number;
 };
 
-const fn_searchSubmit = function (url, data, callBack) {
-	$.ajax({
-		type: "POST",
-		url: url,
-		data: data,
-		dataType: "json",
-		cache: false,
-		async: true,
-		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
-		beforeSend: function (xhr, opts) {
-			return true; // false 전송 취소
-		},
-		success: function (response) {
-			return callBack(response)
-		},
-		error: function (request, status, error) {
-			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-		},
-		complete: function (data, textStatus) {
-			console.log("fn_searchSubmit complete : " + data.statusText + "/" + textStatus);
-		}
-	});
-};
-
-const fn_saveSubmit = function (url, data, async, callBack) {
+const fn_submit = function (url, data, dataType, async, callBack) {
 	$.ajax({ // https://cofs.tistory.com/402
 		type: "POST",
 		url: url,
 		data: data, // {data : JSON.stringify(data)}
-		dataType: "text", //"json" - data의 값이 이미 json이기 때문에 json 변경없이 text로 하는듯...
+		dataType: dataType,
 		cache: false,
 		async: async,
 		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
@@ -76,10 +54,10 @@ const fn_saveSubmit = function (url, data, async, callBack) {
 			return callBack(response);
 		},
 		error: function (request, status, error) {
-			console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			console.log("code : " + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
 		},
 		complete: function (data, textStatus) {
-			console.log("fn_saveSubmit complete : " + data.statusText + "/" + textStatus);
+			console.log("fn_submit complete, dataType : " + dataType + " " + data.statusText + "/" + textStatus);
 		}
 	});
 };
