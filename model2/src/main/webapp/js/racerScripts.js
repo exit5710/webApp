@@ -23,7 +23,7 @@ const fn_showFrequency = function () {
 };
 
 const fn_lastUpdate = function () {
-	$('#updatedTime').html(getDate() + "&nbsp;&nbsp;" + getTime(12));
+	$('#updatedTime').html(fn_getDate() + "&nbsp;&nbsp;" + fn_getTime(12));
 };
 
 const fn_btnStart = function () {
@@ -36,12 +36,11 @@ const fn_btnStart = function () {
 const fn_btnStop = function () {
 	repeat = false;
 
-	$("#freq").html("Updates paused.");
+	$("#freq").html("Updates paused." + " " + fn_getRandom(50));
 };
 
-
 const fn_racerList = function () {
-	fn_searchSubmit("./racerList.do","", function (response) {
+	fn_submit("./racerList.do", "", "json", true, function (response) {
 		$("#finishers_m").empty();
 		$("#finishers_f").empty();
 		$("#finishers_all").empty();
@@ -102,8 +101,8 @@ const fn_btnSave = function () {
 		return false;
 	}
 
-	fn_saveSubmit("./racerSave.do", data, true, function (response) {
-		$('#addRunner')[0].reset();
+	fn_submit("./racerSave.do", data, "text", true, function () { // data의 값이 이미 json이기 때문에 json 변경없이 text로 하는듯...
+		$("#addRunner")[0].reset();
 		alert("정상적으로 등록되었습니다.");
 	});
 };
