@@ -4,7 +4,7 @@
 let repeat = true;
 
 const fn_tabClickCallBack = function (tabSide) {
-	if (tabSide === '#new') {
+	if (tabSide === "#new") {
 		$("#firstName").focus();
 	}
 };
@@ -23,7 +23,7 @@ const fn_showFrequency = function () {
 };
 
 const fn_lastUpdate = function () {
-	$('#updatedTime').html(fn_getDate() + "&nbsp;&nbsp;" + fn_getTime(12));
+	$("#updatedTime").html(fn_getDate() + "&nbsp;&nbsp;" + fn_getTime(12));
 };
 
 const fn_btnStart = function () {
@@ -46,7 +46,7 @@ const fn_racerList = function () {
 		$("#finishers_all").empty();
 
 		$.each(response, function () { // $(response).find("runner").each(function () {
-			// $(this).find('fname').text()
+			// $(this).find("fname").text()
 			let info = "<li>Name: " + this["firstName"] + " " + this["lastName"] + ". Time: " + this["minutes"] + ":" + this["seconds"] + "</li>";
 
 			if (this["gender"] === "m") {
