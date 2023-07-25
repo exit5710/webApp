@@ -29,6 +29,10 @@
 			addRunner.submit();
 			*/
 		}
+
+		$(document).ready(function () {
+			fn_btnStop();
+		});
 	</script>
 </head>
 
