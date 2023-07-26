@@ -2,11 +2,13 @@ package common;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 public class Common {
 	public static String parameterToJson(HttpServletRequest request) {
 		StringBuffer sb = new StringBuffer();
-		String line = null;
+		String line;
 
 		try {
 			BufferedReader reader = request.getReader();
@@ -18,7 +20,8 @@ public class Common {
 			e.printStackTrace();
 		}
 
-		String jsonData = "{" + sb.toString() + "}";
+		String decodeResult = URLDecoder.decode(sb.toString(), StandardCharsets.UTF_8);
+		String jsonData = "{" + decodeResult + "}";
 		jsonData = jsonData.replaceAll("=", ":");
 		jsonData = jsonData.replaceAll("&", ",");
 		//jsonData = "{firstName:111,lastName:22,gender:f,minutes:33,seconds:44}";
