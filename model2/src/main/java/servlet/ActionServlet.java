@@ -35,16 +35,17 @@ public class ActionServlet extends HttpServlet {
 
 		if (action != null) {
 			// ActionForward 역활은 뷰페이지와 이동할 경로의 방식을 결정하는 클래스
-			ActionForward forward;
+			ActionForward actionForward;
 
 			try {
-				forward = action.execute(request, response);
-				if (forward.isRedirect()) {
+				actionForward = action.execute(request, response);
+
+				if (actionForward.isRedirect()) {
 					// redirect
-					response.sendRedirect(contextName + forward.getPath());
+					response.sendRedirect(contextName + actionForward.getPath());
 				} else {
 					// forward
-					RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+					RequestDispatcher rd = request.getRequestDispatcher(actionForward.getPath());
 					rd.forward(request, response);
 				}
 			} catch (Exception e) {
