@@ -49,7 +49,7 @@ const fn_submit = function (url, data, dataType, async, callBack) {
 		dataType: dataType,
 		cache: false,
 		async: async,
-		contentType: "application/x-www-form-urlencoded; charset=utf-8", //application/json; charset=utf-8
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8", //application/json; charset=utf-8
 		success: function (response) {
 			return callBack(response);
 		},
