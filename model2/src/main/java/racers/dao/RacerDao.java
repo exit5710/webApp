@@ -1,10 +1,8 @@
 package racers.dao;
 
 import dataBaseConnection.ConnectionLocator;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import racers.vo.RacerVo;
 
 import java.io.IOException;
@@ -46,10 +44,6 @@ public class RacerDao {
 		try {
 			connection = connectionLocator.getConnection();
 
-			if (connection == null) {
-				System.out.println("null");
-			}
-
 			StringBuffer sql = new StringBuffer();
 			sql.append("SELECT FIRST_NAME");
 			sql.append("       , LAST_NAME");
@@ -70,8 +64,8 @@ public class RacerDao {
 
 				arrayList.add(new RacerVo(firstName, lastName, gender, minutes, seconds));
 			}
-		} catch (SQLException | ClassNotFoundException | IOException e) {
-			connection.rollback();
+		} catch (NullPointerException | ClassNotFoundException | IOException e) {
+			logger.error(e.toString());
 		} finally {
 			close(rs, ps, connection);
 		}
@@ -98,9 +92,11 @@ public class RacerDao {
 			ps.setString(4, racerVo.getMinutes());
 			ps.setString(5, racerVo.getSeconds());
 			ps.executeUpdate();
+
 			connection.commit();
-		} catch (SQLException | ClassNotFoundException | IOException e) {
+		} catch (NullPointerException | ClassNotFoundException | IOException e) {
 			connection.rollback();
+			logger.error(e.toString());
 		} finally {
 			close(rs, ps, connection);
 		}
