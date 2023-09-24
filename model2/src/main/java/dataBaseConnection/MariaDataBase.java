@@ -34,7 +34,7 @@ public class MariaDataBase implements ConnectionLocator {
 		Class.forName("org.mariadb.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(url, user, password);
-		connection.setAutoCommit(false);
+		connection.setAutoCommit(true);
 		resources.close();
 
 		return connection;
