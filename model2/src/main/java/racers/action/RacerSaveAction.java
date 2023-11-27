@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import common.Common;
 import controller.Action;
 import controller.ActionForward;
+import customException.CustomException;
 import dataBaseConnection.ConnectionLocator;
 import dataBaseConnection.MariaDataBase;
 import org.slf4j.Logger;
@@ -31,6 +32,6 @@ public class RacerSaveAction implements Action {
 
 		racerDao.insertRacer(racerVo);
 
-		return null;
+		throw new CustomException("save");
 	}
 }
