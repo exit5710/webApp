@@ -10,9 +10,10 @@ const fn_tabClickCallBack = function (tabSide) {
 };
 
 const fn_startAJAXcalls = function () {
+	fn_racerList();
+
 	if (repeat) {
 		setTimeout(function () {
-			fn_racerList();
 			fn_startAJAXcalls();
 		}, 10000);
 	}
@@ -56,10 +57,10 @@ const fn_racerList = function () {
 			}
 
 			$("#finishers_all").append(info);
-
-			fn_lastUpdate();
 		});
 	});
+
+	fn_lastUpdate();
 };
 
 const fn_btnSave = function () {
@@ -113,7 +114,7 @@ $(document).ready(function () {
 	// $("#btnSave").click(fn_btnSave);
 
 	fn_tabSetting();
-	fn_racerList();
+	//fn_racerList();
 	fn_showFrequency();
 	fn_startAJAXcalls();
 });
