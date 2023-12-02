@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class MariaDataBase implements ConnectionLocator {
-	private static  MariaDataBase singleton;
+	private static MariaDataBase singleton;
 
 	public static MariaDataBase getInstance() {
 		if (singleton == null) {
@@ -31,7 +31,8 @@ public class MariaDataBase implements ConnectionLocator {
 		String user = properties.getProperty("mariaDbUser");
 		String password = properties.getProperty("mariaDbPassword");
 
-		Class.forName("org.mariadb.jdbc.Driver");
+		//Class.forName("org.mariadb.jdbc.Driver");
+		Class.forName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 
 		Connection connection = DriverManager.getConnection(url, user, password);
 		connection.setAutoCommit(true);
