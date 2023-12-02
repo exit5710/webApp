@@ -51,8 +51,10 @@ public class RacerDao {
 			sql.append("       , MINUTES");
 			sql.append("       , SECONDS");
 			sql.append("  FROM RACER");
+			//sql.append(" WHERE IDX = ?");
 
 			ps = connection.prepareStatement(sql.toString());
+			//ps.setInt(1, 1);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -109,7 +111,7 @@ public class RacerDao {
 			if (ps != null) ps.close();
 			if (connection != null) connection.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 	}
 }
