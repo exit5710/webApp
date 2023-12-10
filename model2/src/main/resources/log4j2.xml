@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- properties -->
+	<properties>
+		<property name="layoutPattern">%green{%d{yyyy-MM-dd HH:mm:ss}} %highlight{%5level}{FATAL=bg_red, ERROR=#E9063B, WARN=#EB7428, INFO=#EFDBC5, DEBUG=blue} %magenta{%-4relative} &#45;&#45; [ %thread ] %cyan{%logger} : %yellow{%msg%n}</property>
+		<property name="logPath">../logs/model2</property>
+	</properties>
+
+	<!-- appenders -->
+	<appenders>
+		<!-- console -->
+		<console name="console" target="SYSTEM_OUT">
+			<patternLayout pattern="${layoutPattern}" disableAnsi = "false" />
+		</console>
+
+		<!-- rollingFile -->
+		<rollingFile name ="file">
+			<!--
+			<fileName>${logPath}/log_${date:yyyy}-${date:MM}-${date:dd}.log</fileName>
+			-->
+			<fileName>${logPath}/webApp.log</fileName>
+			<filePattern>${logPath}/${date:yyyy-MM}/dailyLog_%d{yyyy-MM-dd}_%i.log</filePattern>
+			<patternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} %5level %-4relative - [ %thread ] %logger &#45;&#45; %msg %n</pattern>
+			</patternLayout>
+			<policies>
+				<sizeBasedTriggeringPolicy size="30MB" />
+				<timeBasedTriggeringPolicy interval="1" modulate="true" />
+			</policies>
+			<defaultRolloverStrategy>
+				<delete basePath="${logPath}">
+					<ifFileName glob="*.log" />
+					<ifLastModified age="30d" />
+				</delete>
+			</defaultRolloverStrategy>
+		</rollingFile>
+	</appenders>
+
+	<loggers>
+		<!-- application loggers -->
+		<logger name="org.springframework" level="debug" />
+
+		<logger name="jdbc.sqlonly" level="info" />
+		<logger name="jdbc.audit" level="warn" />
+		<logger name="jdbc.sqltiming" level="warn" />
+		<logger name="jdbc.resultset" level="warn" />
+		<logger name="jdbc.resultsettable" level="warn" />
+		<logger name="jdbc.connection" level="warn" />
+
+		<logger name="org.mariadb" level="warn" />
+		<logger name="log4jdbc.debug" level="warn" />
+
+		<!-- fatal, error, warn, info, debug, trace -->
+		<root level="debug">
+			<appenderRef ref="console" />
+			<appenderRef ref="file" />
+		</root>
+	</loggers>
+</configuration>
