@@ -27,11 +27,11 @@ public class MariaDataBase implements ConnectionLocator {
 		Properties properties = new Properties();
 		properties.load(resources);
 
-		String url = properties.getProperty("mariaDbUrl");
+		String url = properties.getProperty("mariaDbUrl.model2");
 		String user = properties.getProperty("mariaDbUser");
 		String password = properties.getProperty("mariaDbPassword");
 
-		//Class.forName("org.mariadb.jdbc.Driver");
+		Class.forName("org.mariadb.jdbc.Driver");
 		Class.forName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 
 		Connection connection = DriverManager.getConnection(url, user, password);
