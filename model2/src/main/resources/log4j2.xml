@@ -1,59 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-	<!-- properties -->
-	<properties>
-		<property name="layoutPattern">%green{%d{yyyy-MM-dd HH:mm:ss}} %highlight{%5level}{FATAL=bg_red, ERROR=#E9063B, WARN=#EB7428, INFO=#EFDBC5, DEBUG=blue} %magenta{%-4relative} &#45;&#45; [ %thread ] %cyan{%logger} : %yellow{%msg%n}</property>
-		<property name="logPath">../logs/model2</property>
-	</properties>
+<Configuration>
+	<Properties>
+		<Property name="layoutPattern">%green{%d{yyyy-MM-dd HH:mm:ss}} %highlight{%5level}{FATAL=bg_red, ERROR=#E9063B, WARN=#EB7428, INFO=#EFDBC5, DEBUG=blue} %magenta{%-4relative} &#45;&#45; [ %thread ] %cyan{%logger} : %yellow{%msg%n}</Property>
+		<Property name="logPath">./../../logs/webApp/model2</Property>
+	</Properties>
 
-	<!-- appenders -->
-	<appenders>
+	<Appenders>
 		<!-- console -->
-		<console name="console" target="SYSTEM_OUT">
-			<patternLayout pattern="${layoutPattern}" disableAnsi = "false" />
-		</console>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${layoutPattern}" disableAnsi = "false" />
+		</Console>
 
 		<!-- rollingFile -->
-		<rollingFile name ="file">
-			<!--
-			<fileName>${logPath}/log_${date:yyyy}-${date:MM}-${date:dd}.log</fileName>
-			-->
-			<fileName>${logPath}/webApp.log</fileName>
-			<filePattern>${logPath}/${date:yyyy-MM}/dailyLog_%d{yyyy-MM-dd}_%i.log</filePattern>
-			<patternLayout>
-				<pattern>%d{yyyy-MM-dd HH:mm:ss} %5level %-4relative - [ %thread ] %logger &#45;&#45; %msg %n</pattern>
-			</patternLayout>
-			<policies>
-				<sizeBasedTriggeringPolicy size="30MB" />
-				<timeBasedTriggeringPolicy interval="1" modulate="true" />
-			</policies>
-			<defaultRolloverStrategy>
-				<delete basePath="${logPath}">
-					<ifFileName glob="*.log" />
-					<ifLastModified age="30d" />
-				</delete>
-			</defaultRolloverStrategy>
-		</rollingFile>
-	</appenders>
+		<RollingFile name ="file">
+			<FileName>${logPath}/webApp.log</FileName>
+			<FilePattern>${logPath}/dailyLog_%d{yyyy-MM-dd}_%i.log</FilePattern>
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %5level %-4relative - [ %thread ] %logger &#45;&#45; %msg %n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="30MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="2" fileIndex="max">
+				<Delete basePath="${logPath}" maxDepth="1">
+					<IfFileName glob="*.log" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
 
-	<loggers>
+	<Loggers>
 		<!-- application loggers -->
-		<logger name="org.springframework" level="debug" />
+		<Logger name="org.springframework" level="debug" />
 
-		<logger name="jdbc.sqlonly" level="info" />
-		<logger name="jdbc.audit" level="warn" />
-		<logger name="jdbc.sqltiming" level="warn" />
-		<logger name="jdbc.resultset" level="warn" />
-		<logger name="jdbc.resultsettable" level="warn" />
-		<logger name="jdbc.connection" level="warn" />
+		<Logger name="jdbc.sqlonly" level="info" />
+		<Logger name="jdbc.audit" level="warn" />
+		<Logger name="jdbc.sqltiming" level="warn" />
+		<Logger name="jdbc.resultset" level="warn" />
+		<Logger name="jdbc.resultsettable" level="warn" />
+		<Logger name="jdbc.connection" level="warn" />
 
-		<logger name="org.mariadb" level="warn" />
-		<logger name="log4jdbc.debug" level="warn" />
+		<Logger name="org.mariadb" level="warn" />
+		<Logger name="log4jdbc.debug" level="warn" />
 
 		<!-- fatal, error, warn, info, debug, trace -->
-		<root level="debug">
-			<appenderRef ref="console" />
-			<appenderRef ref="file" />
-		</root>
-	</loggers>
-</configuration>
+		<Root level="debug">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Root>
+	</Loggers>
+</Configuration>
