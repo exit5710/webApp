@@ -22,9 +22,9 @@
 				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
 				<SizeBasedTriggeringPolicy size="30MB" />
 			</Policies>
-			<DefaultRolloverStrategy max="2" fileIndex="max">
+			<DefaultRolloverStrategy>
 				<Delete basePath="${logPath}" maxDepth="1">
-					<IfFileName glob="*.log" />
+					<IfAccumulatedFileCount exceeds="10"/>
 				</Delete>
 			</DefaultRolloverStrategy>
 		</RollingFile>
