@@ -39,7 +39,7 @@
 					if (xhr.readyState === 4 && xhr.status === 200) {
 						document.getElementById('screen1').style.display = 'none';
 						document.getElementById('screen2').style.display = 'none';
-						document.getElementById('female').innerHTML = xhr.responseText;
+						document.getElementById('etc').innerHTML = xhr.responseText;
 					}
 				};
 
@@ -59,6 +59,7 @@
 				<li><a href="#female">Female Finishers</a></li>
 				<li><a href="#all">All Finishers</a></li>
 				<li><a href="#new">Add New Finisher</a></li>
+				<li><a href="#etc">etc</a></li>
 			</ul>
 			<div class="tabcontent">
 				<div id="male">
@@ -68,14 +69,6 @@
 				<div id="female">
 					<h4>Female Finishers</h4>
 					<ul id="finishers_f"></ul>
-					<div id="screen1">
-						<h1>첫 번째 화면</h1>
-						<button onclick="showScreen('./')">두 번째 화면으로 이동</button>
-					</div>
-					<div id="screen2" style="display: none">
-						<h1>두 번째 화면</h1>
-						<button onclick="showScreen('./')">첫 번째 화면으로 이동</button>
-					</div>
 				</div>
 				<div id="all">
 					<h4>All Finishers</h4>
@@ -100,6 +93,17 @@
 						<!-- <button type="submit" name="btnSave" id="btnSave">Add Runner</button> -->
 						<button type="submit" name="btnSave" onclick="fn_btnSave(); return false;">Add Runner</button>
 					</form>
+				</div>
+				<div id="etc">
+					<h4>etc</h4>
+					<div id="screen1">
+						<h1>첫 번째 화면</h1>
+						<button onclick="showScreen('./')">두 번째 화면으로 이동</button>
+					</div>
+					<div id="screen2" style="display: none">
+						<h1>두 번째 화면</h1>
+						<button onclick="showScreen('./')">첫 번째 화면으로 이동</button>
+					</div>
 				</div>
 			</div>
 		</div>
