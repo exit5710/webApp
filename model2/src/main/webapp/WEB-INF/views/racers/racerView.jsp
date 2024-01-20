@@ -25,8 +25,8 @@
 			});
 
 			let submitContents = function () {
-				let addRunner = document.getElementById("addRunner");
-				addRunner.action = "./racerSave.do";
+				let addRunner = document.getElementById('addRunner');
+				addRunner.action = './racerSave.do';
 				//addRunner.submit();
 
 				return false;
@@ -43,7 +43,7 @@
 					}
 				};
 
-				xhr.open('GET', url, true);
+				xhr.open('POST', url, true);
 				xhr.send();
 			};
 		</script>
