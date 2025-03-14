@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Properties>
-		<Property name="layoutPattern">%green{%d{yyyy-MM-dd HH:mm:ss}} %highlight{%5level}{FATAL=bg_red, ERROR=#E9063B, WARN=#EB7428, INFO=#EFDBC5, DEBUG=blue} %magenta{%-4relative} &#45;&#45; [ %thread ] %cyan{%logger} : %yellow{%msg%n}</Property>
+		<Property name="layoutPattern">%green{%d{yyyy-MM-dd HH:mm:ss}} %highlight{%5level}{FATAL=bg_red, ERROR=#E9063B, WARN=#EB7428, INFO=#EFDBC5, DEBUG=#008FFF} %magenta{%-4relative} &#45;&#45; [ %thread ] %cyan{%logger} : %yellow{%msg%n}</Property>
 		<Property name="logPath">./../../logs/webApp/model2</Property>
 	</Properties>
 
@@ -34,11 +34,11 @@
 		<!-- application loggers -->
 		<Logger name="org.springframework" level="debug" />
 
-		<Logger name="jdbc.sqlonly" level="info" />
+		<Logger name="jdbc.sqlonly" level="debug" />
+		<Logger name="jdbc.resultsettable" level="debug" />
 		<Logger name="jdbc.audit" level="warn" />
 		<Logger name="jdbc.sqltiming" level="warn" />
 		<Logger name="jdbc.resultset" level="warn" />
-		<Logger name="jdbc.resultsettable" level="warn" />
 		<Logger name="jdbc.connection" level="warn" />
 
 		<Logger name="org.mariadb" level="warn" />

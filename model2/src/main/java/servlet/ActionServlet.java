@@ -28,6 +28,12 @@ import java.util.Enumeration;
 public class ActionServlet extends HttpServlet implements ServletContextListener {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	private UserActionFactory uaf;
+
+	public ActionServlet() {
+		this.uaf = UserActionFactory.getInstance();
+	}
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("model2 ActionServlet.service /");
@@ -41,7 +47,7 @@ public class ActionServlet extends HttpServlet implements ServletContextListener
 		String urlPattern = uri.substring(uri.lastIndexOf(".") + 1);
 		String command = uri.substring(contextName.length(), uri.length() - (urlPattern.length() + 1));
 
-		UserActionFactory uaf = UserActionFactory.getInstance();
+		uaf = UserActionFactory.getInstance();
 		Action action = uaf.action(command);
 
 		if (action != null) {

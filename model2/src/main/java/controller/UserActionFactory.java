@@ -7,14 +7,12 @@ import racers.action.RacerViewAction;
 import racers.action.RacerSaveAction;
 
 public class UserActionFactory {
-	private static UserActionFactory singleton;
-
 	public static UserActionFactory getInstance() {
-		if (singleton == null) {
-			singleton = new UserActionFactory();
-		}
+		return UserActionFactoryHelper.INSTANCE;
+	}
 
-		return singleton;
+	private static class UserActionFactoryHelper {
+		private static final UserActionFactory INSTANCE = new UserActionFactory();
 	}
 
 	public Action action(String command) {
